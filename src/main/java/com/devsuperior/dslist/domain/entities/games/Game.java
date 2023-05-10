@@ -2,6 +2,8 @@ package com.devsuperior.dslist.domain.entities.games;
 
 import java.util.Objects;
 
+import com.devsuperior.dslist.domain.dto.DadosCadastroGame;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,10 +23,14 @@ public class Game {
 	@Column(name = "game_year")
 	private Integer year;
 	private String genre;
-	private String plataforms;
+	private String platforms;
 	private Double score;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
+	
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 	
 	public Game() {
@@ -37,11 +43,22 @@ public class Game {
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.plataforms = plataforms;
+		this.platforms = plataforms;
 		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
+	}
+	
+	public Game(DadosCadastroGame dados) {
+		title = dados.getTitle();
+		year = dados.getYear();
+		genre = dados.getGenre();
+		platforms = dados.getPlatforms();
+		score = dados.getScore();
+		imgUrl = dados.getImgUrl();
+		shortDescription = dados.getShortDescription();
+		longDescription = dados.getLongDescription();
 	}
 
 	public Long getId() {
@@ -60,8 +77,8 @@ public class Game {
 		return genre;
 	}
 
-	public String getPlataforms() {
-		return plataforms;
+	public String getPlatforms() {
+		return platforms;
 	}
 
 	public Double getScore() {
